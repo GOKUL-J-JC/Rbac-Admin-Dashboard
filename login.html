@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./fi.png" type="image/x-icon">
+  <title>Admin/User Login</title>
+  <link rel="stylesheet" href="./login.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-info text-dark">
+  <div>
+    <h2 class="p-3 mb-2 bg-transparent text-dark fs-2 fw-bold">Login</h2>
+    <div class="login-container bg-light text-dark">
+      <form id="loginForm">
+        <div class="form-group login-au">
+          <div class="btn-group" role="group" aria-label="Role selection">
+            <input type="radio" class="btn-check" name="role" id="adminRole" value="admin" checked>
+            <label class="btn btn-outline-primary" for="adminRole">Admin</label>
+            <input type="radio" class="btn-check" name="role" id="userRole" value="user">
+            <label class="btn btn-outline-secondary" for="userRole">User</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="fw-bold" for="name">Name</label>
+          <input type="text" id="name" placeholder="Enter your name">
+          <div id="nameError" class="error"></div>
+        </div>
+        <div class="form-group">
+          <label class="fw-bold" for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email">
+          <div id="emailError" class="error"></div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="fw-bold">Password</label>
+          <input type="password" id="password" placeholder="Enter your password">
+          <div id="passwordError" class="error"></div>
+        </div>
+        <button type="button" onclick="validateForm()" class=" fw-bold login-btn">Login</button>
+      </form>
+    </div>
+  </div>
+  <script src="./login.js"></script>
+</body>
+
+</html>

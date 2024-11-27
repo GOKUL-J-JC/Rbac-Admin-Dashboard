@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./fi.png" type="image/x-icon">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-secondary-subtle">
+    <div class="container mt-5 shadow-lg p-4 bg-white rounded">
+        <h1>Admin Dashboard</h1>
+        <p>Welcome, Admin! Manage employee permissions below:</p>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="employeeTable">
+                <!-- Rows for employees will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <button type="button" class="btn btn-primary shadow" onclick="addEmployee()">Add Employee</button>
+    </div>
+
+    <script>
+        function addEmployee() {
+            // Example function to add a new row
+            const table = document.getElementById('employeeTable');
+            const row = table.insertRow();
+
+            row.innerHTML = `
+                <td><input type="text" placeholder="Employee Name"></td>
+                <td><input type="email" placeholder="Employee Email"></td>
+                <td>
+                    <select>
+                        <option value="Select Role">Select Role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Editor">Editor</option>
+                        <option value="User">User</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="Select Status">Select Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </td>
+                <td>
+                    <button class="btn btn-success shadow" onclick="saveEmployee(this)">Save</button>
+                    <button class="btn btn-danger shadow" onclick="deleteEmployee(this)">Delete</button>
+                </td>
+            `;
+        }
+
+        function saveEmployee(button) {
+            const row = button.parentNode.parentNode;
+            const nameInput = row.cells[0].querySelector('input');
+            const emailInput = row.cells[1].querySelector('input');
+            const roleSelect = row.cells[2].querySelector('select');
+            const statusSelect = row.cells[3].querySelector('select');
+
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const role = roleSelect.value;
+            const status = statusSelect.value;
+
+            // Validate fields
+            if (!name || !email || role === 'Select Role' || status === 'Select Status') {
+                alert('Please fill in all fields (Name, Email, Role, and Status) before saving the employee.');
+                return; // Prevent saving if fields are empty
+            }
+
+            // Basic email validation
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            alert('Employee data saved!');
+            // Implement save logic (e.g., save to server or local storage)
+        }
+
+        function deleteEmployee(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            alert('Employee deleted!');
+        }
+    </script>
+</body>
+
+</html>
