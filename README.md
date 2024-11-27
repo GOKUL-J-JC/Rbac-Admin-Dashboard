@@ -27,11 +27,11 @@ This project is a Role-Based Access Control (RBAC) Admin Dashboard built using H
 
  - **Login Credentials**:
    
-    ```Admin
+    -- Admin
     - Username: Admin
     - Email: admin@gmail.com
     - Password: admin123
-    ```User 
+    -- User 
     - Username: User
     - Email: user@gmail.com
     - Password: user123
